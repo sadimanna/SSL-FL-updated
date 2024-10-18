@@ -17,7 +17,7 @@ import torch.backends.cudnn as cudnn
 from torch.utils.tensorboard import SummaryWriter
 
 import timm
-assert timm.__version__ == "0.3.2"  # version check
+# assert timm.__version__ == "0.3.2"  # version check
 from copy import deepcopy
 
 import os
@@ -94,7 +94,7 @@ def get_args():
     # distributed training parameters
     parser.add_argument('--world_size', default=1, type=int,
                         help='number of distributed processes')
-    parser.add_argument('--local_rank', default=-1, type=int)
+    # parser.add_argument('--local_rank', default=-1, type=int)
     parser.add_argument('--sync_bn', default=False, action='store_true')
     parser.add_argument('--dist_on_itp', action='store_true')
     parser.add_argument('--dist_url', default='env://',
@@ -267,6 +267,7 @@ def main(args, model):
 
 if __name__ == '__main__':
     opts = get_args()
+    opts.local_rank = int(os.environ["LOCAL_RANK"])
 
     if opts.output_dir:
         Path(opts.output_dir).mkdir(parents=True, exist_ok=True)
