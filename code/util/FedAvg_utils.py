@@ -104,7 +104,7 @@ def Partial_Client_Selection(args, model, mode='pretrain'):
             msg = model.load_state_dict(checkpoint_model, strict=False)
             print(msg)
             
-            if args.global_pool:
+            if args.global_pool=='token':
                 assert set(msg.missing_keys) == {'head.weight', 'head.bias', 'fc_norm.weight', 'fc_norm.bias'}
             else:
                 assert set(msg.missing_keys) == {'head.weight', 'head.bias'}
