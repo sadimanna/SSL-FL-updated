@@ -44,12 +44,12 @@ class VisionTransformer(timm.models.vision_transformer.VisionTransformer):
     #         x = blk(x)
 
     #     final_norm = True
-    #     if self.global_pool:
+    #     if self.global_pool: ('avg')
     #         use_fc_norm True
     #         norm is Identity
     #         x = x[:, 1:, :].mean(dim=1)  # global pool without cls token
     #         outcome = self.fc_norm(x)
-    #     else:
+    #     else: ('token')
     #         use_fc_norm False
     #         x = self.norm(x)
     #         outcome = x[:, 0] # token pooling
